@@ -12,7 +12,7 @@ type ProfilePageStateType = {
     alert: ProfilePageErrorType,
 }
 
-const initialState:ProfilePageStateType = {
+const initialState: ProfilePageStateType = {
     isLoading: false,
     alert: {
         isError: false,
@@ -25,10 +25,7 @@ export const profilePageSlice = createSlice({
     name: 'userPage',
     initialState,
     reducers: {
-        changeLoadingProfilePage: (state, action:PayloadAction<boolean>)=>{
-            state.isLoading = action.payload
-        },
-        changeShowAlertProfilePage: (state, action:PayloadAction<boolean>) => {
+        changeShowAlertProfilePage: (state, action: PayloadAction<boolean>) => {
             state.alert.isShow = action.payload
         },
         clearAlertMessageProfilePage: state => {
@@ -37,10 +34,10 @@ export const profilePageSlice = createSlice({
         }
     },
     extraReducers: builder => {
-        builder.addCase(fetchEditProfile.pending, state=>{
+        builder.addCase(fetchEditProfile.pending, state => {
             state.isLoading = true
         })
-        builder.addCase(fetchEditProfile.rejected, (state, action)=>{
+        builder.addCase(fetchEditProfile.rejected, (state, action) => {
             state.isLoading = false
             state.alert = {
                 isError: true,
@@ -48,7 +45,7 @@ export const profilePageSlice = createSlice({
                 isShow: true,
             }
         })
-        builder.addCase(fetchEditProfile.fulfilled, (state, action)=>{
+        builder.addCase(fetchEditProfile.fulfilled, (state, action) => {
             state.isLoading = false
             state.alert = {
                 isError: false,
@@ -59,4 +56,4 @@ export const profilePageSlice = createSlice({
     }
 })
 
-export const {changeLoadingProfilePage, changeShowAlertProfilePage, clearAlertMessageProfilePage} = profilePageSlice.actions
+export const {changeShowAlertProfilePage, clearAlertMessageProfilePage} = profilePageSlice.actions

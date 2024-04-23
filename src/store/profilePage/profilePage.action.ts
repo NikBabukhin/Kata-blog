@@ -9,11 +9,14 @@ export type EditUserFormType = {
 }
 
 type FetchEditProfileParamsType = {
-    profileData:EditUserFormType,
+    profileData: EditUserFormType,
     token?: string,
 }
 
-export const fetchEditProfile = createAsyncThunk('profilePage/submitForm', async ({profileData, token}:FetchEditProfileParamsType) => {
+export const fetchEditProfile = createAsyncThunk('profilePage/submitForm', async ({
+                                                                                      profileData,
+                                                                                      token
+                                                                                  }: FetchEditProfileParamsType) => {
     try {
         const data = {
             method: 'PUT',
@@ -21,7 +24,7 @@ export const fetchEditProfile = createAsyncThunk('profilePage/submitForm', async
                 "Content-Type": "application/json",
                 "Authorization": `Token ${token}`
             },
-            body: JSON.stringify({user:profileData})
+            body: JSON.stringify({user: profileData})
         }
         const response = await fetch(`${MAIN_URL}/user`, data).then(res => res.json())
         if (response.errors) {
@@ -32,7 +35,7 @@ export const fetchEditProfile = createAsyncThunk('profilePage/submitForm', async
             throw new Error(errors.join('&'))
         }
         return response
-    } catch (error:any) {
+    } catch (error: any) {
         throw new Error(error.message)
     }
 })

@@ -13,7 +13,15 @@ type TagsFormPropsType = {
 }
 
 
-export const TagsForm: React.FC<TagsFormPropsType> = ({fieldId, isLastTag,tag,index,onChangeValue, removeItemFromTags, addNewTag}) => {
+export const TagsForm: React.FC<TagsFormPropsType> = ({
+                                                          fieldId,
+                                                          isLastTag,
+                                                          tag,
+                                                          index,
+                                                          onChangeValue,
+                                                          removeItemFromTags,
+                                                          addNewTag
+                                                      }) => {
     const [value, setValue] = useState<string>(tag)
     const saveChanges = () => {
         onChangeValue(index, value)
@@ -24,12 +32,12 @@ export const TagsForm: React.FC<TagsFormPropsType> = ({fieldId, isLastTag,tag,in
             id={fieldId}
             value={value}
             onBlur={saveChanges}
-            onChange={event=>setValue(event.currentTarget.value)}
+            onChange={event => setValue(event.currentTarget.value)}
             placeholder={'Tag'}
             className={style.field}
             size={'small'}
         />
-            <Button variant={'outlined'} color={'error'} onClick={()=>removeItemFromTags(index)}>Delete</Button>
+        <Button variant={'outlined'} color={'error'} onClick={() => removeItemFromTags(index)}>Delete</Button>
         {isLastTag && <Button variant={'outlined'} color={'primary'} onClick={addNewTag}>Add Tag</Button>}
     </div>
 }

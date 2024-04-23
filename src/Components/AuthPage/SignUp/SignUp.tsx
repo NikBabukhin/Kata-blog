@@ -6,7 +6,7 @@ import {SubmitHandler, useForm} from "react-hook-form";
 import {CorrectSignUpDataType, SignUpData, signUpSubmitForm} from "../../../store/signUpSlice/signUp.action";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {changePersonalAccept, hideAlertSignUp} from "../../../store/signUpSlice/signUp.slice";
-import {changeAuthorized, changeAuthToken} from "../../../store/signInSlice/signIn.slice";
+import {changeAuthorized, changeAuthToken, changeCurrentUser} from "../../../store/signInSlice/signIn.slice";
 
 export const emailRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -33,8 +33,9 @@ export const SignUp: React.FC = () => {
             email: data.email.trim().toLowerCase(),
             password: data.password,
         }
-        dispatch(signUpSubmitForm(correctData)).then((action:any)=> {
+        dispatch(signUpSubmitForm(correctData)).then((action: any) => {
             if (action.payload?.user?.token) {
+                dispatch(changeCurrentUser(action.payload))
                 dispatch(changeAuthToken(action.payload.user?.token))
                 dispatch(changeAuthorized(action.payload.user?.token))
             }
@@ -51,22 +52,22 @@ export const SignUp: React.FC = () => {
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if (alert.isShow && !alert.error) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 dispatch(hideAlertSignUp())
                 history.push('/')
             }, 1300)
         } else if (alert.isShow && alert.error) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 dispatch(hideAlertSignUp())
             }, 2500)
         }
-    },[alert])
+    }, [alert])
 
     return <div className={style.wrapper}>
         {alert.isShow && <div className={style.alert}>
-            <Alert severity={alert.error? "error" : "success"} variant="filled">{alert.message}</Alert>
+            <Alert severity={alert.error ? "error" : "success"} variant="filled">{alert.message}</Alert>
         </div>}
         {loading ? <CircularProgress/> : <>
             <h5 className={style.header}>Create new account</h5>

@@ -11,7 +11,7 @@ export type CurrentSignUser = {
     token: string,
     username: string,
     bio?: string,
-    image?: string|null,
+    image?: string | null,
 }
 
 type SignInSliceStateType = {
@@ -46,15 +46,15 @@ export const signInSlice = createSlice({
             state.alert.message = ''
             state.alert.isShow = false
         },
-        changeAuthorized: (state, action:PayloadAction<boolean>) => {
+        changeAuthorized: (state, action: PayloadAction<boolean>) => {
             state.isAuthorized = action.payload
         },
-        changeAuthToken: (state, action:PayloadAction<string>) => {
+        changeAuthToken: (state, action: PayloadAction<string>) => {
             state.authToken = action.payload
         },
-        changeCurrentUser: (state, action:PayloadAction<{user:CurrentSignUser}>) => {
+        changeCurrentUser: (state, action: PayloadAction<{ user: CurrentSignUser }>) => {
             state.user = action.payload.user
-            action.payload.user.token && localStorage.setItem('token', JSON.stringify(action.payload.user.token))
+            action.payload.user?.token && localStorage.setItem('token', JSON.stringify(action.payload.user.token))
         },
         signOutUser: state => {
             state.isAuthorized = false
@@ -83,7 +83,7 @@ export const signInSlice = createSlice({
 
             state.isAuthorized = false
         })
-        builder.addCase(signInSubmitForm.fulfilled, (state, action:PayloadAction<{user: CurrentSignUser}>) => {
+        builder.addCase(signInSubmitForm.fulfilled, (state, action: PayloadAction<{ user: CurrentSignUser }>) => {
             state.isLoading = false
             state.alert.error = false
             state.alert.message = 'Login successful'
@@ -99,7 +99,7 @@ export const signInSlice = createSlice({
         builder.addCase(fetchUserInfo.rejected, (state, action) => {
             state.isAuthorized = false
         })
-        builder.addCase(fetchUserInfo.fulfilled, (state, action:PayloadAction<{user: CurrentSignUser}>)=>{
+        builder.addCase(fetchUserInfo.fulfilled, (state, action: PayloadAction<{ user: CurrentSignUser }>) => {
             state.isLoading = false
             state.alert.error = false
 
@@ -113,4 +113,4 @@ export const signInSlice = createSlice({
     }
 })
 
-export const {hideAlertSignIn,changeAuthorized,changeAuthToken, signOutUser, changeCurrentUser} = signInSlice.actions
+export const {hideAlertSignIn, changeAuthorized, changeAuthToken, signOutUser, changeCurrentUser} = signInSlice.actions

@@ -5,9 +5,7 @@ import {AuthorType} from "../../../../../store/articlesSlice/articles.slice";
 import {format} from "date-fns";
 import {Button} from "@mui/material";
 import {PopupBody} from "../../ArticleHeader/PopupBody/PopupBody";
-import {useHistory} from "react-router-dom";
-import {useAppDispatch, useAppSelector} from "../../../../../hooks/hooks";
-import {editArticleChangeParentArticle} from "../../../../../store/editArticleSlice/editArticle.slice";
+import {useAppSelector} from "../../../../../hooks/hooks";
 
 type AuthorPropsType = {
     isShortContent: boolean,
@@ -15,11 +13,19 @@ type AuthorPropsType = {
     date?: string,
     edithPath?: string,
     navigateToEdit?: (editPath: string) => void,
-    fillArticleFieldsBeforeEdit?: ()=>void,
-    deleteCurrentArticle?: ()=>void,
+    fillArticleFieldsBeforeEdit?: () => void,
+    deleteCurrentArticle?: () => void,
 }
 
-export const Author: React.FC<AuthorPropsType> = ({isShortContent, author, date, edithPath, navigateToEdit,fillArticleFieldsBeforeEdit, deleteCurrentArticle}) => {
+export const Author: React.FC<AuthorPropsType> = ({
+                                                      isShortContent,
+                                                      author,
+                                                      date,
+                                                      edithPath,
+                                                      navigateToEdit,
+                                                      fillArticleFieldsBeforeEdit,
+                                                      deleteCurrentArticle
+                                                  }) => {
     const [openPopup, setOpenPopup] = useState<boolean>(false)
     const isAuth = useAppSelector(state => state.singInSlice.isAuthorized)
     const onClickEditHandler = () => {

@@ -56,7 +56,7 @@ export const editArticleSlice = createSlice({
         editArticleChangeTag: (state, action: PayloadAction<ChangeTagNamePayloadType>) => {
             state.tags[action.payload.index] = action.payload.value
         },
-        editArticleChangeParentArticle: (state, action:PayloadAction<PayloadActionTypeFromArticlePage>) => {
+        editArticleChangeParentArticle: (state, action: PayloadAction<PayloadActionTypeFromArticlePage>) => {
             state.tags = action.payload.tags
             state.article = action.payload.article
         }
@@ -85,4 +85,7 @@ export const editArticleSlice = createSlice({
     }
 })
 
-export const {editArticleAddNewTag, editArticleDeleteTag, editArticleChangeTag, editArticleChangeParentArticle} = editArticleSlice.actions
+export const {
+    editArticleAddNewTag, editArticleDeleteTag,
+    editArticleChangeTag, editArticleChangeParentArticle
+} = editArticleSlice.actions

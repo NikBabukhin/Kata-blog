@@ -7,7 +7,7 @@ type PaginationBlockPropsType = {
     totalPages?: number,
 }
 
-const PaginationBlockMemoized:React.FC<PaginationBlockPropsType> = ({ currentPage, changePage, totalPages }) => {
+const PaginationBlockMemoized: React.FC<PaginationBlockPropsType> = ({currentPage, changePage, totalPages}) => {
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
         changePage(value)
     };

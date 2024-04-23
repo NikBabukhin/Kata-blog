@@ -38,7 +38,10 @@ export const deleteArticle = createAsyncThunk('articles/deleteArticle', async ({
     const options = {
         "Authorization": `Token ${token}`,
     }
-    const response = await fetch(`${MAIN_URL}articles/${articleSlug}`, {method: 'DELETE', headers: options}).then(res => res.json()).catch(err => {
+    const response = await fetch(`${MAIN_URL}articles/${articleSlug}`, {
+        method: 'DELETE',
+        headers: options
+    }).then(res => res.json()).catch(err => {
         throw new Error(err)
     })
     return await response
@@ -53,7 +56,10 @@ export const favoriteArticle = createAsyncThunk('articles/favoriteArticle', asyn
         const options = {
             "Authorization": `Token ${token}`,
         }
-        const response = await fetch(`${MAIN_URL}articles/${articleSlug}/favorite`, {method: isFavorited ? 'DELETE' : 'POST', headers: options}).then(res => res.json()).catch(err => {
+        const response = await fetch(`${MAIN_URL}articles/${articleSlug}/favorite`, {
+            method: isFavorited ? 'DELETE' : 'POST',
+            headers: options
+        }).then(res => res.json()).catch(err => {
             throw new Error(err)
         })
         if (response.errors?.message) {

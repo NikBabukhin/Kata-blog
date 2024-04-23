@@ -9,7 +9,6 @@ import {LogOut} from "./LogOut/LogOut";
 
 export const Header:React.FC = () => {
     const isAuthorized = useAppSelector(state=>state.singInSlice.isAuthorized)
-    const user = useAppSelector(state=>state.singInSlice.user)
 
     return <header className={style.wrapper}>
         <div>

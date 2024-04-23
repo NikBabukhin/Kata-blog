@@ -4,11 +4,9 @@ import {Author} from "./Author/Author";
 import {ArticleHeader} from "../ArticleHeader/ArticleHeader";
 import Markdown from "react-markdown";
 import {ArticleType} from "../../../../store/articlesSlice/articles.slice";
-import {Route, useHistory} from "react-router-dom";
-import {EditArticlePage} from "../../../EditArticlePage/EditArticlePage";
+import {useHistory} from "react-router-dom";
 import {editArticleChangeParentArticle} from "../../../../store/editArticleSlice/editArticle.slice";
 import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
-import {fetchCreateNewArticle} from "../../../../store/editArticleSlice/editArticle.action";
 import {deleteArticle} from "../../../../store/articlePageSlice/articlePage.action";
 
 type ArticlePropsType = {
@@ -16,8 +14,8 @@ type ArticlePropsType = {
     isShortContent: boolean,
 }
 
-export const Article: React.FC<ArticlePropsType> = ({ isShortContent , article}) => {
-    const token = useAppSelector(state=>state.singInSlice.authToken)
+export const Article: React.FC<ArticlePropsType> = ({isShortContent, article}) => {
+    const token = useAppSelector(state => state.singInSlice.authToken)
     const history = useHistory()
     const dispatch = useAppDispatch()
     const navigateToEdit = (path: string) => {
@@ -35,13 +33,13 @@ export const Article: React.FC<ArticlePropsType> = ({ isShortContent , article})
         dispatch(editArticleChangeParentArticle(articleDataForEdit))
     }
     const deleteCurrentArticle = () => {
-        dispatch(deleteArticle({articleSlug: article.slug, token})).then(response=>{
+        dispatch(deleteArticle({articleSlug: article.slug, token})).then(response => {
             history.push('/articles')
         })
     }
     const path = `/articles/${article.slug}/edit`
 
-    return <article className={`${style.wrapper} ${isShortContent&&style.shortWrapper}`}>
+    return <article className={`${style.wrapper} ${isShortContent && style.shortWrapper}`}>
         <div className={style.content}>
             <ArticleHeader
                 isShortContent={isShortContent}
@@ -61,7 +59,7 @@ export const Article: React.FC<ArticlePropsType> = ({ isShortContent , article})
         </div>
         {!isShortContent &&
             <div className={style.textBody}>
-                {article.body?<Markdown>{article.body}</Markdown>:<i>Article has no body</i>}
+                {article.body ? <Markdown>{article.body}</Markdown> : <i>Article has no body</i>}
             </div>}
     </article>
 }

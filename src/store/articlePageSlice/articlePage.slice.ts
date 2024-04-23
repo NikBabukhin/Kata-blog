@@ -9,7 +9,7 @@ type ArticlePageSliceInitialType = {
     errorText?: string,
 }
 
-const initialState:ArticlePageSliceInitialType = {
+const initialState: ArticlePageSliceInitialType = {
     article: {
         slug: '',
         title: '',
@@ -33,11 +33,9 @@ const initialState:ArticlePageSliceInitialType = {
 export const articlePageSlice = createSlice({
     name: 'articlePageSlice',
     initialState,
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: builder => {
-        builder.addCase(fetchArticle.pending, state=>{
+        builder.addCase(fetchArticle.pending, state => {
             state.isLoading = true
             state.isError = false
             delete state.errorText
@@ -55,12 +53,12 @@ export const articlePageSlice = createSlice({
             state.article = action.payload
         })
 
-        builder.addCase(deleteArticle.rejected, (state,action)=>{
+        builder.addCase(deleteArticle.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.errorText = 'Problems with server'
         })
-        builder.addCase(deleteArticle.pending, state=>{
+        builder.addCase(deleteArticle.pending, state => {
             state.isLoading = true
             state.isError = false
             delete state.errorText
@@ -70,7 +68,7 @@ export const articlePageSlice = createSlice({
             state.isError = false
             delete state.errorText
         })
-        builder.addCase(favoriteArticle.fulfilled, (state, action:PayloadAction<ArticleType>) => {
+        builder.addCase(favoriteArticle.fulfilled, (state, action: PayloadAction<ArticleType>) => {
             state.article = action.payload
         })
     }

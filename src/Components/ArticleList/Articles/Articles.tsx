@@ -7,10 +7,10 @@ type ArticlesPropsType = {
     articles: ArticleType[]
 }
 
-export const Articles: React.FC<ArticlesPropsType> = ({ articles }) => {
+export const Articles: React.FC<ArticlesPropsType> = ({articles}) => {
 
-    return articles.length?<div className={style.wrapper}>
-        {articles.map(article=><Article
+    return articles.length ? <div className={style.wrapper}>
+        {articles.map(article => <Article
             key={article.slug}
             article={article}
             isShortContent={true}

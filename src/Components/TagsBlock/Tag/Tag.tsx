@@ -6,10 +6,10 @@ type TagPropsType = {
     isShortContent: boolean
 }
 
-export const Tag:React.FC<TagPropsType> = ({ tagValue, isShortContent }) => {
+export const Tag: React.FC<TagPropsType> = ({tagValue, isShortContent}) => {
 
-    const getCorrectTagText = (text:string):string => {
-        if (text.trim().length<15) {
+    const getCorrectTagText = (text: string): string => {
+        if (text.trim().length < 15) {
             return text.trim()
         } else {
             return text.trim().slice(0, 12) + '...'
@@ -17,6 +17,6 @@ export const Tag:React.FC<TagPropsType> = ({ tagValue, isShortContent }) => {
     }
 
     return tagValue ?
-        <div className={style.tag} title={tagValue}>{isShortContent?getCorrectTagText(tagValue):tagValue}</div> :
+        <div className={style.tag} title={tagValue}>{isShortContent ? getCorrectTagText(tagValue) : tagValue}</div> :
         <></>
 }

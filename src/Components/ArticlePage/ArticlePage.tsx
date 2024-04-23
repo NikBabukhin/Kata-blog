@@ -12,9 +12,9 @@ type ArticlePagePropsType = {
 export const ArticlePage: React.FC<ArticlePagePropsType> = ({articleSlug}) => {
     const article = useAppSelector(state => state.articlePageSlice.article)
     const loading = useAppSelector(state => state.articlePageSlice.isLoading)
-    const error = useAppSelector(state=>state.articlePageSlice.isError)
-    const errorText = useAppSelector(state=>state.articlePageSlice.errorText)
-    const token = useAppSelector(state=>state.singInSlice.authToken)
+    const error = useAppSelector(state => state.articlePageSlice.isError)
+    const errorText = useAppSelector(state => state.articlePageSlice.errorText)
+    const token = useAppSelector(state => state.singInSlice.authToken)
 
     const dispatch = useAppDispatch()
 
@@ -25,7 +25,7 @@ export const ArticlePage: React.FC<ArticlePagePropsType> = ({articleSlug}) => {
     }, [articleSlug])
 
     return <div className={style.wrapper}>
-        {error? <span>{errorText}</span> : loading
+        {error ? <span>{errorText}</span> : loading
             ? <CircularProgress/>
             : <Article
                 isShortContent={false}

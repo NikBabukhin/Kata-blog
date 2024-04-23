@@ -14,8 +14,8 @@ export const ArticleList: React.FC = () => {
     const articlesPerPage = useAppSelector<number>(state => state.articlesSlice.articlesPerPage)
     const loading = useAppSelector(state => state.articlesSlice.isLoading)
     const error = useAppSelector(state => state.articlesSlice.isError)
-    const errorText = useAppSelector(state=>state.articlesSlice.error)
-    const token = useAppSelector(state=>state.singInSlice.authToken)
+    const errorText = useAppSelector(state => state.articlesSlice.error)
+    const token = useAppSelector(state => state.singInSlice.authToken)
     const dispatch = useAppDispatch()
 
     const totalPages = Math.ceil(totalArticles / articlesPerPage)
@@ -33,7 +33,7 @@ export const ArticleList: React.FC = () => {
     }, [])
 
     return <div className={style.wrapper}>
-        {error? <span>{errorText}</span> : loading ?
+        {error ? <span>{errorText}</span> : loading ?
             <CircularProgress/> :
             <>
                 <Articles articles={articles}/>

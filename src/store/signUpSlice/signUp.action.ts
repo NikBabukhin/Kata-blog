@@ -14,7 +14,7 @@ export type CorrectSignUpDataType = {
     password: string,
 }
 
-export const signUpSubmitForm = createAsyncThunk('signUpSlice/submitForm', async(dataSignUpData:CorrectSignUpDataType, { rejectWithValue })=>{
+export const signUpSubmitForm = createAsyncThunk('signUpSlice/submitForm', async (dataSignUpData: CorrectSignUpDataType, {rejectWithValue}) => {
     try {
         const data = {
             method: 'POST',
@@ -32,7 +32,7 @@ export const signUpSubmitForm = createAsyncThunk('signUpSlice/submitForm', async
             throw new Error(JSON.stringify(response.errors))
         }
         return response
-    } catch (error:any) {
+    } catch (error: any) {
         throw new Error(error.message)
     }
 })

@@ -9,9 +9,8 @@ import {emailRegexp} from "../SignUp/SignUp";
 import {hideAlertSignIn} from "../../../store/signInSlice/signIn.slice";
 
 
-
-export const SignIn:React.FC = () => {
-    const loading = useAppSelector(state=> state.singInSlice.isLoading)
+export const SignIn: React.FC = () => {
+    const loading = useAppSelector(state => state.singInSlice.isLoading)
     const alert = useAppSelector(state => state.singInSlice.alert)
 
     const history = useHistory()
@@ -25,30 +24,30 @@ export const SignIn:React.FC = () => {
     } = useForm<SignInDataType>()
 
     const onSubmit: SubmitHandler<SignInDataType> = (data) => {
-        const correctData:SignInDataType = {
+        const correctData: SignInDataType = {
             email: data.email.trim().toLowerCase(),
             password: data.password,
         }
         dispatch(signInSubmitForm(correctData))
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if (alert.isShow && !alert.error) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 dispatch(hideAlertSignIn())
                 history.push('/')
             }, 1300)
         } else if (alert.isShow && alert.error) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 dispatch(hideAlertSignIn())
             }, 2500)
         }
-    },[alert])
+    }, [alert])
 
 
     return <div className={style.wrapper}>
         {alert.isShow && <div className={style.alert}>
-            <Alert severity={alert.error? "error" : "success"} variant="filled">{alert.message}</Alert>
+            <Alert severity={alert.error ? "error" : "success"} variant="filled">{alert.message}</Alert>
         </div>}
         {loading ? <CircularProgress/> : <>
             <h5 className={style.header}>Sign In</h5>
