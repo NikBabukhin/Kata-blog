@@ -1,0 +1,13 @@
+@import "../../styles/variables";
+
+.wrapper {
+  padding: 24px;
+  justify-content: center;
+  display: flex;
+}
+
+.content {
+  background-color: $background-color-base;
+  box-shadow: $shadow-article;
+  padding: 15px;
+}

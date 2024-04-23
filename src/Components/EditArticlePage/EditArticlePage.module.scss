@@ -1,0 +1,47 @@
+@import "../../styles/variables";
+
+.wrapper {
+  display: flex;
+  margin: 10vh auto;
+  background-color: $background-color-base;
+  padding: 48px 32px;
+  gap: 21px;
+  flex-direction: column;
+  width: 900px;
+}
+
+.header {
+  text-align: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  display: block;
+  color: $text-color-form;
+  margin: 0;
+}
+
+.spanInput {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: $text-color-form;
+}
+
+.tags {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.addButton {
+  width: 136px;
+  height: 40px;
+}
+
+.sendButton {
+  width: 320px;
+
+  button {
+    width: 100%;
+  }
+}

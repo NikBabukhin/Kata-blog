@@ -1,0 +1,40 @@
+@import '../../styles/variables';
+
+.wrapper {
+  background-color: $background-color-base;
+  margin: 10vh auto;
+  border-radius: 6px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  padding: 48px 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  width: 380px;
+  color: $text-color-form;
+  position: relative;
+}
+
+.form {
+  width: 320px;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: center;
+  margin: 0;
+}
+
+.inputName {
+  font-size: $font-size-base;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.alert {
+  position: absolute;
+  top: 150px;
+}

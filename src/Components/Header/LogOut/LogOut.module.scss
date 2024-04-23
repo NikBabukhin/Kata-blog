@@ -1,0 +1,11 @@
+@import '../../../styles/variables';
+
+.logOut {
+  display: flex;
+  align-items: center;
+}
+
+.button {
+  color: $text-color;
+  border-color: $text-color;
+}

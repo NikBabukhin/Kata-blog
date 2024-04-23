@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.wrapper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.moreText {
+  display: block;
+  font-size: $font-size-sm;
+  color: $text-color-secondary;
+  margin-bottom: 5px;
+}

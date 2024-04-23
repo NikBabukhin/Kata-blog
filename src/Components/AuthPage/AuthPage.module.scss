@@ -1,0 +1,71 @@
+@import "../../styles/variables";
+
+.wrapper {
+  background-color: $background-color-base;
+  margin: 10vh auto;
+  border-radius: 6px;
+  border: 1px solid rgba(217, 217, 217, 1);
+  padding: 48px 32px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  width: 380px;
+  color: $text-color-form;
+  position: relative;
+}
+
+.alert {
+  position: absolute;
+  top: 150px;
+}
+
+.form {
+  width: 320px;
+}
+
+.inputName {
+  font-size: $font-size-base;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: center;
+  margin: 0;
+}
+
+.personal {
+  width: 320px;
+  border-top: 1px solid $border-gray-color;
+  padding-top: 8px;
+  display: flex;
+
+  span {
+    color: $text-color-gray;
+    font-size: $font-size-base;
+    line-height: 22px;
+  }
+}
+
+.button {
+  text-align: center;
+  a {
+    color: $font-color-h5-header;
+    text-decoration: none;
+    font-size: $font-size-sm;
+  }
+}
+
+.signIn {
+  padding-top: 8px;
+  display: inline-block;
+  font-size: $font-size-sm;
+  color: #8C8C8C;
+  font-weight: 400;
+}
+

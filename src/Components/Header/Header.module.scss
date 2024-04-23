@@ -1,0 +1,28 @@
+@import '../../styles/variables.scss';
+
+.wrapper {
+    width: 100%;
+    background-color: $background-color-base;
+    height: 80px;
+    display: flex;
+    padding: 0 22px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.header {
+    font-size: 18px;
+    font-weight: $font-weight-semi-light;
+    line-height: 28px;
+    color: $heading-color;
+}
+
+.menu {
+    display: flex;
+    gap: 25px;
+}

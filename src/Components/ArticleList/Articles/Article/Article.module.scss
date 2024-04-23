@@ -1,0 +1,78 @@
+@import '../../../../styles/variables';
+
+.wrapper {
+  max-width: 930px;
+  min-width: 400px;
+  width: 80%;
+  background-color: $background-color-base;
+  padding: 15px;
+  box-sizing: border-box;
+  box-shadow: $shadow-article;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.shortWrapper {
+  height: 140px;
+}
+
+.content {
+  max-width: 70%;
+}
+
+.title {
+  margin-bottom: 5px;
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  overflow-wrap: anywhere;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.header {
+  margin: 0;
+  font-weight: $font-weight-semi-light;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.headerLink {
+  color: $font-color-h5-header;
+}
+
+.likeWrapper {
+  display: flex;
+  align-items: center;
+
+}
+
+.buttonWrapper {
+  padding: 0;
+}
+
+.countLike {
+  display: block;
+  margin: 0 5px;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semi-light;
+  color: $font-color-light;
+}
+
+.text {
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semi-light;
+  color: $text-color;
+  overflow-wrap: anywhere;
+}
+
+.textBody {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 25px;
+  overflow-wrap: break-word;
+}

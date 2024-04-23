@@ -1,0 +1,42 @@
+@import '../../../../../styles/variables';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: relative;
+}
+
+.shortWrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.author {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  color: $heading-color;
+  font-size: 18px;
+  font-weight: $font-weight-semi-light;
+  margin: 0;
+  line-height: 28px;
+}
+
+.date {
+  color: $text-color-secondary;
+  font-size: $font-size-sm;
+  font-weight: $font-weight-semi-light;
+  line-height: 22px;
+}
+
+.avatarImage {
+  border-radius: 50%;
+}
+
+.editButtons {
+  display: flex;
+  gap: 12px;
+}

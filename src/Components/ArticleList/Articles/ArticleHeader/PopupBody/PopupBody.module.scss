@@ -1,0 +1,82 @@
+@import '../../../../../styles/variables';
+
+.popupWrapper {
+  position: absolute;
+  top: 80px;
+  z-index: 20;
+  background-color: $background-color-base;
+  padding: 16px 12px;
+  width: 240px;
+  height: 90px;
+  box-shadow: $shadow-article;
+  border-radius: 4px;
+  left: 80px;
+
+  &:before {
+    content: ' ';
+    width: 12px;
+    height: 20px;
+    z-index: 21;
+    position: absolute;
+    top: 3px;
+    left: 0;
+    background-color: $background-color-base;
+    //background-color: black;
+    rotate: 45deg;
+  }
+}
+
+.messageWrapper {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.text {
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  button {
+    padding: 0 8px;
+    font-size: 14px;
+    line-height: 22px;
+    text-transform: none;
+    height: 24px;
+
+    &:hover {
+      cursor: pointer;
+    };
+
+    &:active {
+      scale: 0.9;
+    }
+  }
+}
+
+.buttonNo {
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+
+  &:hover {
+    background-color: #e5e2e2;
+  }
+}
+
+.buttonYes {
+  border: 1px solid #1890FF;
+  border-radius: 4px;
+  background: #1890FF;
+  color:#FFFFFF;
+
+  &:hover {
+    border: 1px solid #1479d7;
+    background-color: #1479d7;
+  }
+}

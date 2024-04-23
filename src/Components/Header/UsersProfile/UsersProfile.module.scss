@@ -1,0 +1,11 @@
+@import "../../../styles/variables";
+
+.wrapper {
+  display: flex;
+  gap: 13px;
+  align-items: center;
+  color: $text-color;
+  img {
+    border-radius: 50%;
+  }
+}

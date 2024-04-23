@@ -1,0 +1,1 @@
+export const MAIN_URL = "https://blog.kata.academy/api/"
