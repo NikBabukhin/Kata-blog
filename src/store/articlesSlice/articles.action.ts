@@ -16,7 +16,7 @@ export const fetchArticlesList = createAsyncThunk('articles/fetchArticles', asyn
     if (token) {
         options.Authorization = `Token ${token}`
     }
-    const response = await fetch(`${MAIN_URL}articles?offset=${currentPage}`, {headers: options}).then(res => res.json()).catch(err => {
+    const response = await fetch(`${MAIN_URL}articles?offset=${(currentPage - 1) * 20}`, {headers: options}).then(res => res.json()).catch(err => {
         throw new Error(err)
     })
     return await response

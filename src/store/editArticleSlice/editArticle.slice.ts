@@ -1,5 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchCreateNewArticle} from "./editArticle.action";
+import {fetchCreateNewArticle, fetchEditArticle} from "./editArticle.action";
 
 export type ChangeTagNamePayloadType = {
     index: number,
@@ -14,6 +14,7 @@ export type NewArticleType = {
     title: string,
     description: string,
     body: string,
+    slug?: string,
 }
 
 export type PayloadActionTypeFromArticlePage = {
@@ -75,6 +76,26 @@ export const editArticleSlice = createSlice({
             state.alert.message = action.error.message || 'Unknown error'
         })
         builder.addCase(fetchCreateNewArticle.fulfilled, state => {
+            state.article = initialState.article
+            state.tags = initialState.tags
+            state.loading = false
+            state.alert.isShow = true
+            state.alert.error = false
+            state.alert.message = ''
+        })
+        builder.addCase(fetchEditArticle.pending, state => {
+            state.loading = true;
+            state.alert.isShow = false
+            state.alert.error = false
+            state.alert.message = ''
+        })
+        builder.addCase(fetchEditArticle.rejected, (state, action)=>{
+            state.loading = false
+            state.alert.isShow = true
+            state.alert.error = true
+            state.alert.message = action.error.message || 'Unknown error'
+        })
+        builder.addCase(fetchEditArticle.fulfilled, state=>{
             state.article = initialState.article
             state.tags = initialState.tags
             state.loading = false

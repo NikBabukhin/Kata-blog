@@ -43,7 +43,7 @@ const initialState: SignUpSliceType = {
     alert: {
         isShow: false,
         error: false,
-        message: ''
+        message: '',
     },
     redirectToHome: false,
 }
@@ -69,13 +69,13 @@ export const signUpSlice = createSlice({
         builder.addCase(signUpSubmitForm.rejected, (state, action) => {
             state.loading = false
             state.alert.error = true
-            state.alert.message = action.error.message || ' Unknown error'
+            state.alert.message = 'Unsuccessful'
             state.alert.isShow = true
         })
         builder.addCase(signUpSubmitForm.fulfilled, (state, action) => {
             state.loading = false
             state.alert.error = false
-            state.alert.message = 'User added'
+            state.alert.message = 'Registration is successful'
             state.alert.isShow = true
 
             const token = action.payload.user?.token

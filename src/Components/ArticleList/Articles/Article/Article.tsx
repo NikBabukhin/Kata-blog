@@ -27,7 +27,8 @@ export const Article: React.FC<ArticlePropsType> = ({isShortContent, article}) =
             article: {
                 title: article.title,
                 description: article.description,
-                body: article.body
+                body: article.body,
+                slug: article.slug,
             },
         }
         dispatch(editArticleChangeParentArticle(articleDataForEdit))
@@ -51,6 +52,7 @@ export const Article: React.FC<ArticlePropsType> = ({isShortContent, article}) =
                 isShortContent={isShortContent}
                 author={article.author}
                 date={article.createdAt}
+                slug={article.slug}
                 edithPath={path}
                 navigateToEdit={navigateToEdit}
                 fillArticleFieldsBeforeEdit={fillArticleFieldsBeforeEdit}

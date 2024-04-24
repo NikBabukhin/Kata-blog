@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import style from "./TagsForm.module.scss"
 import {Button, TextField} from "@mui/material";
 
@@ -10,6 +10,7 @@ type TagsFormPropsType = {
     onChangeValue: (index: number, value: string) => void,
     removeItemFromTags: (tagsIndex: number) => void,
     addNewTag: () => void,
+    isEdit?: boolean
 }
 
 
@@ -20,24 +21,27 @@ export const TagsForm: React.FC<TagsFormPropsType> = ({
                                                           index,
                                                           onChangeValue,
                                                           removeItemFromTags,
-                                                          addNewTag
+                                                          addNewTag,
+                                                          isEdit,
                                                       }) => {
-    const [value, setValue] = useState<string>(tag)
-    const saveChanges = () => {
+    const saveChanges = (value:string) => {
         onChangeValue(index, value)
     }
 
     return <div className={style.wrapper}>
         <TextField
             id={fieldId}
-            value={value}
-            onBlur={saveChanges}
-            onChange={event => setValue(event.currentTarget.value)}
+            value={tag}
+            onChange={event => saveChanges(event.currentTarget.value)}
             placeholder={'Tag'}
             className={style.field}
             size={'small'}
+            disabled={isEdit}
+            autoFocus
         />
-        <Button variant={'outlined'} color={'error'} onClick={() => removeItemFromTags(index)}>Delete</Button>
-        {isLastTag && <Button variant={'outlined'} color={'primary'} onClick={addNewTag}>Add Tag</Button>}
+        <Button variant={'outlined'} color={'error'} onClick={() => removeItemFromTags(index)}
+                disabled={isEdit}>Delete</Button>
+        {isLastTag &&
+            <Button variant={'outlined'} color={'primary'} onClick={addNewTag} disabled={isEdit}>Add Tag</Button>}
     </div>
 }

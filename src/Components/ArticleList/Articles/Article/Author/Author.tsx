@@ -11,6 +11,7 @@ type AuthorPropsType = {
     isShortContent: boolean,
     author: AuthorType,
     date?: string,
+    slug:string,
     edithPath?: string,
     navigateToEdit?: (editPath: string) => void,
     fillArticleFieldsBeforeEdit?: () => void,
@@ -24,16 +25,21 @@ export const Author: React.FC<AuthorPropsType> = ({
                                                       edithPath,
                                                       navigateToEdit,
                                                       fillArticleFieldsBeforeEdit,
-                                                      deleteCurrentArticle
+                                                      deleteCurrentArticle,
+    slug
                                                   }) => {
     const [openPopup, setOpenPopup] = useState<boolean>(false)
     const isAuth = useAppSelector(state => state.singInSlice.isAuthorized)
+    const currentUser = useAppSelector(state => state.singInSlice.user)
+
     const onClickEditHandler = () => {
         if (navigateToEdit && edithPath) {
             fillArticleFieldsBeforeEdit && fillArticleFieldsBeforeEdit()
             navigateToEdit(edithPath)
         }
     }
+
+    const isMyArticle = currentUser.username === author.username
 
     return <div className={style.wrapper}>
         <div className={style.shortWrapper}>
@@ -51,11 +57,11 @@ export const Author: React.FC<AuthorPropsType> = ({
                 />
             </div>
         </div>
-        {!isShortContent && isAuth && <div className={style.editButtons}>
+        {!isShortContent && isAuth && isMyArticle && <div className={style.editButtons}>
             <Button variant={'outlined'} color={'error'} size={'small'}
                     onClick={() => setOpenPopup(!openPopup)}>Delete</Button>
             <Button variant={'outlined'} color={'success'} size={'small'} onClick={onClickEditHandler}>Edit</Button>
         </div>}
-        <PopupBody open={openPopup} setOpen={setOpenPopup} confirmMove={deleteCurrentArticle}/>
+        {isMyArticle &&<PopupBody open={openPopup} setOpen={setOpenPopup} confirmMove={deleteCurrentArticle}/>}
     </div>
 }

@@ -57,11 +57,11 @@ export const SignUp: React.FC = () => {
             setTimeout(() => {
                 dispatch(hideAlertSignUp())
                 history.push('/')
-            }, 1300)
+            }, 800)
         } else if (alert.isShow && alert.error) {
             setTimeout(() => {
                 dispatch(hideAlertSignUp())
-            }, 2500)
+            }, 1200)
         }
     }, [alert])
 

@@ -72,13 +72,12 @@ export const signInSlice = createSlice({
             state.isLoading = true
             state.alert.error = false
             state.alert.message = ''
-
             state.isAuthorized = false
         })
         builder.addCase(signInSubmitForm.rejected, (state, action) => {
             state.isLoading = false
             state.alert.error = true
-            state.alert.message = action.error.message || ' Unknown error'
+            state.alert.message = action.error?.message || 'Unsuccessful'
             state.alert.isShow = true
 
             state.isAuthorized = false

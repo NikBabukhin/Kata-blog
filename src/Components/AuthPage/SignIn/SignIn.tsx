@@ -36,11 +36,11 @@ export const SignIn: React.FC = () => {
             setTimeout(() => {
                 dispatch(hideAlertSignIn())
                 history.push('/')
-            }, 1300)
+            }, 800)
         } else if (alert.isShow && alert.error) {
             setTimeout(() => {
                 dispatch(hideAlertSignIn())
-            }, 2500)
+            }, 1200)
         }
     }, [alert])
 

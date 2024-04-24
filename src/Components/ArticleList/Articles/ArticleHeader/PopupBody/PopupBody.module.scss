@@ -2,7 +2,7 @@
 
 .popupWrapper {
   position: absolute;
-  top: 80px;
+  top: 120px;
   z-index: 20;
   background-color: $background-color-base;
   padding: 16px 12px;
@@ -10,16 +10,15 @@
   height: 90px;
   box-shadow: $shadow-article;
   border-radius: 4px;
-  left: 80px;
+  left: 0;
 
   &:before {
     content: ' ';
     width: 12px;
     height: 20px;
-    z-index: 21;
     position: absolute;
-    top: 3px;
-    left: 0;
+    top: -5px;
+    left: 10%;
     background-color: $background-color-base;
     //background-color: black;
     rotate: 45deg;

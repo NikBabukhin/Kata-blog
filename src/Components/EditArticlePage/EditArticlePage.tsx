@@ -9,7 +9,11 @@ import {
     editArticleAddNewTag
 } from "../../store/editArticleSlice/editArticle.slice";
 import {SubmitHandler, useForm} from "react-hook-form";
-import {fetchCreateNewArticle, SendDataEditArticleType} from "../../store/editArticleSlice/editArticle.action";
+import {
+    fetchCreateNewArticle,
+    fetchEditArticle,
+    SendDataEditArticleType
+} from "../../store/editArticleSlice/editArticle.action";
 import {useHistory} from "react-router-dom";
 
 type ArticleChangedPagePropsType = {
@@ -25,8 +29,13 @@ export const EditArticlePage: React.FC<ArticleChangedPagePropsType> = ({header, 
         register,
         handleSubmit,
         formState: {errors},
+        reset,
     } = useForm<SendDataEditArticleType>({
-        defaultValues: ({...currentArticle})
+        defaultValues: ({
+            title: currentArticle.title,
+            body: currentArticle.body,
+            description: currentArticle.description,
+        })
     })
     const history = useHistory()
     const token = useAppSelector(state => state.singInSlice.authToken)
@@ -45,13 +54,24 @@ export const EditArticlePage: React.FC<ArticleChangedPagePropsType> = ({header, 
     }
 
     const onSubmit: SubmitHandler<SendDataEditArticleType> = (data) => {
-        data.tagList = tags
-        dispatch(fetchCreateNewArticle({token, article: data}))
-            .then((res: any) => {
+        if (!isEdit) {
+            data.tagList = tags
+            dispatch(fetchCreateNewArticle({token, article: data}))
+                .then((res: any) => {
+                    if (res.payload?.slug) {
+                        history.push(`/articles/${res.payload?.slug}`)
+                        reset()
+                    }
+                })
+        } else {
+            dispatch(fetchEditArticle({token, article: data, slug: currentArticle.slug || ''})).then((res: any) => {
                 if (res.payload?.slug) {
                     history.push(`/articles/${res.payload?.slug}`)
+                    reset()
                 }
             })
+        }
+
     }
 
 
@@ -123,6 +143,7 @@ export const EditArticlePage: React.FC<ArticleChangedPagePropsType> = ({header, 
                     <div className={style.tags}>
                         <span className={style.spanInput}>Tags</span>
                         {tags.length ? tags.map((tag, index, tagsArr) => <TagsForm
+                                    isEdit={isEdit}
                                     addNewTag={addNewTag}
                                     isLastTag={tagsArr.length - 1 === index}
                                     fieldId={tag + index}
@@ -133,7 +154,9 @@ export const EditArticlePage: React.FC<ArticleChangedPagePropsType> = ({header, 
                                     removeItemFromTags={removeItemFromTags}
                                 />
                             ) :
-                            <Button variant={'outlined'} color={'primary'} className={style.addButton}
+                            <Button variant={'outlined'} color={'primary'}
+                                    className={style.addButton}
+                                    disabled={isEdit}
                                     onClick={addNewTag}>Add
                                 Tag</Button>}
                     </div>
