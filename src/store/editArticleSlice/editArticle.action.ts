@@ -14,14 +14,8 @@ type FetchCreateNewArticleDataType = {
     token?: string,
 }
 
-export type SendDataEditWithoutTagsArticleType = {
-    title: string,
-    description: string,
-    body: string,
-}
-
 type FetchEditArticleDataType = {
-    article: SendDataEditWithoutTagsArticleType,
+    article: SendDataEditArticleType,
     token?: string,
     slug: string,
 }

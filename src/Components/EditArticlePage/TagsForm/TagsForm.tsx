@@ -24,7 +24,7 @@ export const TagsForm: React.FC<TagsFormPropsType> = ({
                                                           addNewTag,
                                                           isEdit,
                                                       }) => {
-    const saveChanges = (value:string) => {
+    const saveChanges = (value: string) => {
         onChangeValue(index, value)
     }
 
@@ -36,12 +36,11 @@ export const TagsForm: React.FC<TagsFormPropsType> = ({
             placeholder={'Tag'}
             className={style.field}
             size={'small'}
-            disabled={isEdit}
             autoFocus
         />
-        <Button variant={'outlined'} color={'error'} onClick={() => removeItemFromTags(index)}
-                disabled={isEdit}>Delete</Button>
+        <Button variant={'outlined'} color={'error'}
+                onClick={() => removeItemFromTags(index)}>Delete</Button>
         {isLastTag &&
-            <Button variant={'outlined'} color={'primary'} onClick={addNewTag} disabled={isEdit}>Add Tag</Button>}
+            <Button variant={'outlined'} color={'primary'} onClick={addNewTag}>Add Tag</Button>}
     </div>
 }

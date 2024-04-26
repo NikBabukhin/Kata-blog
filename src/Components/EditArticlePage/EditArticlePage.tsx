@@ -54,8 +54,8 @@ export const EditArticlePage: React.FC<ArticleChangedPagePropsType> = ({header, 
     }
 
     const onSubmit: SubmitHandler<SendDataEditArticleType> = (data) => {
+        data.tagList = tags
         if (!isEdit) {
-            data.tagList = tags
             dispatch(fetchCreateNewArticle({token, article: data}))
                 .then((res: any) => {
                     if (res.payload?.slug) {
@@ -156,7 +156,6 @@ export const EditArticlePage: React.FC<ArticleChangedPagePropsType> = ({header, 
                             ) :
                             <Button variant={'outlined'} color={'primary'}
                                     className={style.addButton}
-                                    disabled={isEdit}
                                     onClick={addNewTag}>Add
                                 Tag</Button>}
                     </div>
